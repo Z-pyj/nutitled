@@ -11,7 +11,7 @@ if __name__ == '__main__':
     # 批量获取不同企业的id值
     url = 'http://scxk.nmpa.gov.cn:81/xk/itownet/portalAction.do?method=getXkzsList'
     # 参数的封装
-    for page in range(1, 11):
+    for page in range(1, 15):
         page = str(page)
         data = {
             'on': 'true',
