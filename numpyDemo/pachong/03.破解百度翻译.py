@@ -17,6 +17,6 @@ if __name__ == "__main__":
     # 获取响应结果转为json格式
     res_json = res.json()
     # 数据持久化
-    fp = open("./fanyi.json", mode='w', encoding='utf-8')
+    fp = open("fanyi.json", mode='w', encoding='utf-8')
     json.dump(res_json, fp=fp, ensure_ascii=False)
     print("抓取完成")

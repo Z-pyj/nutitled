@@ -18,6 +18,6 @@ if __name__ == '__main__':
     res_text = requests.get(url=db_xj_top_url, params=param, headers=header)
     print(res_text)
     res_json = res_text.json()
-    fp = open("./douban.json", mode='w', encoding='utf-8')
+    fp = open("douban.json", mode='w', encoding='utf-8')
     json.dump(res_json, fp=fp, ensure_ascii=False)
     print("over!!!")
