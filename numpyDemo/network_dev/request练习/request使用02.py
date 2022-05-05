@@ -12,4 +12,7 @@ data = {
 
 r = requests.get(url1, params=data)
 # print(r.text)
-print(r.json())
+# print(r.json())
+print(r.encoding)
+print(r.content)
+print(r.raw)
