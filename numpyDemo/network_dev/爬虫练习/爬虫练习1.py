@@ -5,12 +5,13 @@ import logging
 from urllib.parse import urljoin
 from os import makedirs
 from os.path import exists
+import multiprocessing
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s : %(message)s')
 
 BASE_URL = 'https://ssr1.scrape.center'
 
-TOTAL_PAGE = 1
+TOTAL_PAGE = 2
 RESULT_DIR = 'result'
 exists(RESULT_DIR) or makedirs(RESULT_DIR)
 
@@ -83,18 +84,21 @@ def parse_detail(html):
     }
 
 
-def main():
-    for page in range(1, TOTAL_PAGE + 1):
-        index_html = scrape_index(page)
-        detail_urls = parse_index(index_html)
-        for detail_url in detail_urls:
-            detail_html = scrape_detail(detail_url)
-            data = parse_detail(detail_html)
-            logging.info('get detail data %s', data)
-            logging.info('saving data to json file')
-            save_data(data)
-            logging.info('data saved successfully!')
+def main(page):
+    index_html = scrape_index(page)
+    detail_urls = parse_index(index_html)
+    for detail_url in detail_urls:
+        detail_html = scrape_detail(detail_url)
+        data = parse_detail(detail_html)
+        logging.info('get detail data %s', data)
+        logging.info('saving data to json file')
+        save_data(data)
+        logging.info('data saved successfully!')
 
 
 if __name__ == '__main__':
-    main()
+    pool = multiprocessing.Pool()
+    pages = range(1, TOTAL_PAGE+1)
+    pool.map(main, pages)
+    pool.close()
+    pool.join()
