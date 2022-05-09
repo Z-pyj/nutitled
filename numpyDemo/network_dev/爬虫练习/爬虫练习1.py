@@ -36,13 +36,13 @@ def scrape_page(url):
         logging.error('error_occurred while scraping %s', url, exc_info=True)
 
 
-# 实现翻页
+# 翻页列表
 def scrape_index(page):
     index_url = f'{BASE_URL}/page/{page}'
     return scrape_page(index_url)
 
 
-# 解析列表页
+# 解析列表页，获取详情url
 def parse_index(html):
     pattern = re.compile('<a.*?href="(.*?)" class="name">')
     items = re.findall(pattern, html)
@@ -97,6 +97,7 @@ def main(page):
 
 
 if __name__ == '__main__':
+    # 基于进程的并行
     pool = multiprocessing.Pool()
     pages = range(1, TOTAL_PAGE+1)
     pool.map(main, pages)
