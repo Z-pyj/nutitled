@@ -14,5 +14,8 @@ def callback(ch, method, properties, body):
     print(f"GET {body}")
 
 
-channel.basic_consume(queue='scrape', auto_ack=True, on_message_callback=callback)
+channel.basic_consume(queue='scrape',
+                      auto_ack=True,
+                      on_message_callback=callback)
+
 channel.start_consuming()
