@@ -7,6 +7,7 @@ INDEX_URL = 'https://spa1.scrape.center/api/movie/?limit={limit}&offset={offset}
 DETAIL_URL = 'https://spa1.scrape.center/api/movie/{id}'
 
 
+# 通用接口
 def scrape_api(url):
     logging.info('scraping %s...', url)
     try:
@@ -19,11 +20,13 @@ def scrape_api(url):
         logging.error('error ocurred while scraping %s', url, exc_info=True)
 
 
+# 电影列表
 def scrape_index(page):
     url = INDEX_URL.format(limit=LIMIT, offset=LIMIT * (page - 1))
     return scrape_api(url)
 
 
+# 电影详情
 def scrape_detail(id):
     url = DETAIL_URL.format(id=id)
     return scrape_api(url)
