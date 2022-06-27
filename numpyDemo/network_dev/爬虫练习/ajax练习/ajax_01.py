@@ -4,6 +4,7 @@ import logging
 LIMIT = 10
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s: %(message)s')
 INDEX_URL = 'https://spa1.scrape.center/api/movie/?limit={limit}&offset={offset}'
+DETAIL_URL = 'https://spa1.scrape.center/api/movie/{id}'
 
 
 def scrape_api(url):
@@ -23,5 +24,16 @@ def scrape_index(page):
     return scrape_api(url)
 
 
+def scrape_detail(id):
+    url = DETAIL_URL.format(id=id)
+    return scrape_api(url)
+
+
 if __name__ == '__main__':
-    scrape_index(3)
+    TOTAL_PAGE = 1
+    for page in range(1, TOTAL_PAGE + 1):
+        index_data = scrape_index(page)
+        for item in index_data.get('results'):
+            scrape_id = item.get('id')
+            detail_data = scrape_detail(scrape_id)
+            logging.info('detail data %s', detail_data)
