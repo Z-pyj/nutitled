@@ -38,6 +38,7 @@ def scrape_detail(id):
     return scrape_api(url)
 
 
+# 保存到mongo数据库
 def save_data(data):
     collection.update_one({
         'name': data.get('name')

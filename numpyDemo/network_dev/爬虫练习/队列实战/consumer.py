@@ -11,6 +11,7 @@ channel = connection.channel()
 session = requests.Session()
 
 
+# 请求
 def scrape(request):
     try:
         response = session.send(request.prepare())
