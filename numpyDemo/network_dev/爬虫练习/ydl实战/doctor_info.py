@@ -2,7 +2,9 @@ import requests
 import json
 import logging
 import time
+
 requests.packages.urllib3.disable_warnings()
+skip = 20
 url = 'https://testapi.ydl.com/api/smart-rank/v1/search'
 json_date = {
     "fields": {
@@ -52,7 +54,7 @@ json_date = {
             "skips": {
                 "726617832470364160": 11,
                 "726617832470364161": 9,
-                "skip": 20
+                "skip": skip
             }
         },
         "ffrom": "m",
