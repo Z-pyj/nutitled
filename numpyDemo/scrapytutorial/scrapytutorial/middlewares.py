@@ -2,7 +2,7 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
-
+# TODO:Middlewares的定义 爬取时的中间件
 from scrapy import signals
 
 # useful for handling different item types with a single interface

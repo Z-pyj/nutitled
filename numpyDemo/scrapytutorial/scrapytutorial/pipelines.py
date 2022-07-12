@@ -6,7 +6,7 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+# TODO:pipelines的定义 定义数据管道
 
 class ScrapytutorialPipeline:
     def process_item(self, item, spider):

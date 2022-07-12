@@ -2,7 +2,7 @@
 #
 # See documentation in:
 # https://docs.scrapy.org/en/latest/topics/items.html
-
+# TODO:Items的定义 定义爬取的数据结构
 import scrapy
 
 
