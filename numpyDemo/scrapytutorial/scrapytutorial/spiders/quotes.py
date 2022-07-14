@@ -12,4 +12,8 @@ class QuotesSpider(scrapy.Spider):
     # 默认start_urls链接请求完成下载后，parse方法就会被调用，返回的响应作为唯一的参数传递给parse方法
     # 该方法解析返回的响应、提取数据或者进一步生成要处理的请求
     def parse(self, response):
-        pass
+        quotes = response.css('.quote')
+        for quote in quotes:
+            text = quote.css('.text::text').extract_first()
+            author = quote.css('.author::text').extract_first()
+            tags = quote.css('.tags .tag::text').extract()
